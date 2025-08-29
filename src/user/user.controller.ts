@@ -20,6 +20,9 @@ import { Roles } from './decorator/Roles.decorator';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  //  @docs   Admin Can Create User
+  //  @Route  POST /api/v1/user
+  //  @access Private [admin]
   @Post()
   @Roles(['admin'])
   @UseGuards(AuthGuard)

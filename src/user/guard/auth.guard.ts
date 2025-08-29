@@ -3,6 +3,7 @@
 import {
   CanActivate,
   ExecutionContext,
+  ForbiddenException,
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -23,8 +24,6 @@ export class AuthGuard implements CanActivate {
     const token = this.extractTokenFromHeader(request);
     const roles = this.reflector.get(Roles, context.getHandler());
 
-    console.log(roles);
-
     if (!token) {
       throw new UnauthorizedException();
     }
@@ -37,7 +36,7 @@ export class AuthGuard implements CanActivate {
         payload.role === '' ||
         !roles.includes(payload.role)
       ) {
-        throw new UnauthorizedException();
+        throw new ForbiddenException();
       }
       request['user'] = payload;
     } catch {
