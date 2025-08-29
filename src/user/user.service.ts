@@ -9,8 +9,9 @@ import { InjectModel } from '@nestjs/mongoose';
 export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
-  create(createUserDto: CreateUserDto) {
+  create(createUserDto: CreateUserDto , user: User) {
     console.log(createUserDto);
+    console.log({user});
     
     
     return 'This action adds a new user';
