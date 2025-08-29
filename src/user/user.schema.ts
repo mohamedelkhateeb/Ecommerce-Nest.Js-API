@@ -12,7 +12,6 @@ export class User {
     max: [30, 'Name must be at most 30 characters'],
   })
   name: string;
-  //
   @Prop({
     type: String,
     required: true,
